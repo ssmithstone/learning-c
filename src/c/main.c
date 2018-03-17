@@ -48,7 +48,7 @@ void testSeparateOnToken(char * const  str){}
 void testTrimLeft(char * const  str){}
 
 void testPadLeft(char * const  str , int padlength , char * ch){
-    char * a = malloc((strlen(ch) + strlen(str) + 1) * sizeof(char));
+    char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
     strcat( a , ch );
     strcat( a , str );
     printf("before padding [%s]\n"  , str);
