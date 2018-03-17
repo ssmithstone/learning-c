@@ -12,8 +12,9 @@ void testStringFormattingWithPrintf(char *str);
 void testModifyStringWithNewCharAtIndex(char * str , int index , char newchar);
 
 int main() {
-    char * strptr = "ABCabc";
+    char * strptr = "ABC abc dEf aBc";
     testStringToLowerCase(strptr);
+    testStringToUpperCase(strptr);
     return 0;
 }
 
@@ -30,7 +31,18 @@ void testStringToLowerCase(char * const str){
     free(dup);
 
 }
-void testStringToUpperCase(char * const str){}
+void testStringToUpperCase(char * const str){
+    char * dup = strdup(str);
+    int length = (int) strlen(dup);
+    for(int i = 0 ; i < length ; i++){
+        int a = dup[i];
+        if((a > 90)){
+            dup[i] = (char)(a - 32);
+        }
+    }
+    printf("upper case version of [ %s ] is [ %s ]\n" , str, dup);
+    free(dup);
+}
 void testStringToSentanceCase(char * const str){}
 void testSeparateOnToken(char * const  str){}
 void testTrimLeft(char * const  str){}
