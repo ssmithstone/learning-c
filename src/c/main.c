@@ -11,10 +11,11 @@ void testTrimRight(char *str);
 void testStringFormattingWithPrintf(char *str);
 void testModifyStringWithNewCharAtIndex(char * str , int index , char newchar);
 void testPadLeft(char * str , int padlength , char * ch);
+void testPadRight(char * const  str ,  char * ch);
 
 int main() {
     char * strptr = "ABC";
-    testPadLeft(strptr , 10 , "***");
+    testPadRight(strptr , "***");
     return 0;
 }
 
@@ -51,6 +52,16 @@ void testPadLeft(char * const  str , int padlength , char * ch){
     char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
     strcat( a , ch );
     strcat( a , str );
+    printf("before padding [%s]\n"  , str);
+    printf("after padding [%s]\n"  , a);
+    printf("length of sting [%d]\n" , (int) strlen(a));
+    free(a);
+}
+
+void testPadRight(char * const  str ,  char * ch){
+    char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
+    strcat( a , str );
+    strcat( a , ch );
     printf("before padding [%s]\n"  , str);
     printf("after padding [%s]\n"  , a);
     printf("length of sting [%d]\n" , (int) strlen(a));
