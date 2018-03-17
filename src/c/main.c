@@ -10,12 +10,13 @@ void testTrimLeft(char *str);
 void testTrimRight(char *str);
 void testStringFormattingWithPrintf(char *str);
 void testModifyStringWithNewCharAtIndex(char * str , int index , char newchar);
-void testPadLeft(char * str , char * ch);
-void testPadRight(char * const  str ,  char * ch);
+void testPadLeft(char * str ,  char ch , int length);
+void testPadRight(char * str ,  char ch , int length);
+char * testGenerateStringOfOfLength(char ch , int length);
 
 int main() {
     char * strptr = "ABC";
-    testPadRight(strptr , "***");
+    testPadLeft(strptr , '*' , 10);
     return 0;
 }
 
@@ -48,23 +49,32 @@ void testStringToSentanceCase(char * const str){}
 void testSeparateOnToken(char * const  str){}
 void testTrimLeft(char * const  str){}
 
-void testPadLeft(char * const  str , char * ch){
-    char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
-    strcat( a , ch );
-    strcat( a , str );
-    printf("before padding [%s]\n"  , str);
+void testPadLeft(char * str ,  char ch , int length){
+    char * a = calloc((strlen(str) + 1 + length) , sizeof(char));
+    char * p = testGenerateStringOfOfLength(ch, length);
+    strcat( a , p );
+    strcat( a , str);
     printf("after padding [%s]\n"  , a);
-    printf("length of sting [%d]\n" , (int) strlen(a));
     free(a);
+    free(p);
 }
 
-void testPadRight(char * const  str ,  char * ch){
-    char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
+char * testGenerateStringOfOfLength(char ch , int length){
+    char * a = calloc(  length + 1 , sizeof(char));
+    for(int i = 0 ; i < length ; i++ ){
+        a[i] = ch;
+    }
+    return a;
+}
+
+void testPadRight(char * const  str ,  char ch , int length){
+    char * a = calloc((strlen(str) + 1 + length) , sizeof(char));
     strcat( a , str );
-    strcat( a , ch );
+    char * p = testGenerateStringOfOfLength(ch, length);
+    strcat( a , p );
     printf("before padding [%s]\n"  , str);
     printf("after padding [%s]\n"  , a);
-    printf("length of sting [%d]\n" , (int) strlen(a));
+    free(p);
     free(a);
 }
 
