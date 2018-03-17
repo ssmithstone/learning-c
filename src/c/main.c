@@ -10,7 +10,7 @@ void testTrimLeft(char *str);
 void testTrimRight(char *str);
 void testStringFormattingWithPrintf(char *str);
 void testModifyStringWithNewCharAtIndex(char * str , int index , char newchar);
-void testPadLeft(char * str , int padlength , char * ch);
+void testPadLeft(char * str , char * ch);
 void testPadRight(char * const  str ,  char * ch);
 
 int main() {
@@ -48,7 +48,7 @@ void testStringToSentanceCase(char * const str){}
 void testSeparateOnToken(char * const  str){}
 void testTrimLeft(char * const  str){}
 
-void testPadLeft(char * const  str , int padlength , char * ch){
+void testPadLeft(char * const  str , char * ch){
     char * a = calloc((strlen(ch) + strlen(str) + 1) , sizeof(char));
     strcat( a , ch );
     strcat( a , str );
